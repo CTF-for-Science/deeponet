@@ -88,8 +88,10 @@ class DeepONet:
         elif config['dataset']['name'] == 'seismo':
             sensors_df = pd.read_csv("/home/matte/Desktop/PhD/Code/CTF-for-Science/data/seismo/sensor_locations.csv")
             self.x = np.column_stack((sensors_df['x'].values, sensors_df['y'].values, sensors_df['z'].values)).astype(np.float32)
+        elif config['dataset']['name'] == 'ocean_das':
+            self.x = 9.57 * np.arange(0, self.n).reshape(-1,1).astype(np.float32)
         else:
-            self.x = np.arange(0, self.n).reshape(-1,1).astype(np.float32) 
+            self.x = np.arange(0, self.n).reshape(-1,1).astype(np.float32)
 
         if self.lag > self.m:
             raise ValueError(f"Select a 'lag' parameter smaller than the number of training timesteps ({self.m}).")

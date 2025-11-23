@@ -1,0 +1,16 @@
+dataset:
+  name: ocean_das
+  pair_id: [2]
+model:
+  activation: tanh
+  branch_layers: 2
+  epochs: 10000
+  initialization: Glorot normal
+  lag: 28
+  learning_rate: 0.000554323
+  method: constant
+  name: DeepONet
+  neurons: 124
+  optimizer: adam
+  seed: 0
+  trunk_layers: 5
