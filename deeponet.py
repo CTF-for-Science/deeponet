@@ -86,10 +86,13 @@ class DeepONet:
         if config['dataset']['name'] == 'PDE_KS':
             self.x = 32.0 * np.pi / self.n * np.arange(0, self.n).reshape(-1,1).astype(np.float32)
         elif config['dataset']['name'] == 'seismo':
-            sensors_df = pd.read_csv("/home/matte/Desktop/PhD/Code/CTF-for-Science/data/seismo/sensor_locations.csv")
+            sensors_df = pd.read_csv("data/seismo/sensor_locations.csv")
             self.x = np.column_stack((sensors_df['x'].values, sensors_df['y'].values, sensors_df['z'].values)).astype(np.float32)
         elif config['dataset']['name'] == 'ocean_das':
             self.x = 9.57 * np.arange(0, self.n).reshape(-1,1).astype(np.float32)
+        elif config['dataset']['name'] == 'msfr':
+            self.x = np.load("data/msfr/nodes.npy").astype(np.float32)
+            self.x = np.repeat(self.x, 5, axis =0)
         else:
             self.x = np.arange(0, self.n).reshape(-1,1).astype(np.float32)
 
